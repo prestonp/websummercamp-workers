@@ -34,7 +34,7 @@ async function handle(request) {
   }
 
   if (request.headers.get('verbose')) {
-    headers.logs = btoa(logger.logs.join(''))
+    headers.logs = logger.toString()
   }
 
   return new Response(JSON.stringify(body, null, 2), {
@@ -69,6 +69,10 @@ class Logger {
     if (Logger.logLvls[lvl] <= Logger.logLvls[this.lvl]) {
       this.logs.push(`${new Date().toJSON()} [${lvl}] - ${msg}\n`)
     }
+  }
+
+  toString() {
+    return btoa(this.logs.join(''))
   }
 
   fatal(msg) { this.log('fatal', msg) }

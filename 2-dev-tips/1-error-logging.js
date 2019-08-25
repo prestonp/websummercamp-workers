@@ -58,6 +58,7 @@ class Logger {
     'info': 3,
     'debug': 4,
   }
+
   constructor(lvl = 'info', logs = []) {
     this.lvl = lvl
     this.logs = logs
